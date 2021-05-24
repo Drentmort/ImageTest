@@ -9,3 +9,4 @@ C:\Users\Anton\source\repos\ImageTest\ImageTest\obj\Debug\ImageTest.exe
 C:\Users\Anton\source\repos\ImageTest\ImageTest\obj\Debug\ImageTest.pdb
 C:\Users\Anton\source\repos\ImageTest\ImageTest\obj\Debug\ImageTest.MainForm.resources
 C:\Users\Anton\source\repos\ImageTest\ImageTest\obj\Debug\ImageTest.MotionForm.resources
+C:\Users\Anton\source\repos\ImageTest\ImageTest\obj\Debug\ImageTest.Gauss.resources

@@ -36,6 +36,7 @@
             this.button5 = new System.Windows.Forms.Button();
             this.PosterImageButton = new System.Windows.Forms.Button();
             this.OpenImageDialog = new System.Windows.Forms.OpenFileDialog();
+            this.button1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -83,6 +84,7 @@
             this.GaussBlurButton.TabIndex = 3;
             this.GaussBlurButton.Text = "Gauss blur";
             this.GaussBlurButton.UseVisualStyleBackColor = true;
+            this.GaussBlurButton.Click += new System.EventHandler(this.GaussBlurButton_Click);
             // 
             // SepiaButton
             // 
@@ -93,6 +95,7 @@
             this.SepiaButton.TabIndex = 4;
             this.SepiaButton.Text = "Sepia";
             this.SepiaButton.UseVisualStyleBackColor = true;
+            this.SepiaButton.Click += new System.EventHandler(this.SepiaButton_Click);
             // 
             // button5
             // 
@@ -103,6 +106,7 @@
             this.button5.TabIndex = 5;
             this.button5.Text = "Black &   \r\nWhite";
             this.button5.UseVisualStyleBackColor = true;
+            this.button5.Click += new System.EventHandler(this.button5_Click);
             // 
             // PosterImageButton
             // 
@@ -113,17 +117,30 @@
             this.PosterImageButton.TabIndex = 6;
             this.PosterImageButton.Text = "PosterImage";
             this.PosterImageButton.UseVisualStyleBackColor = true;
+            this.PosterImageButton.Click += new System.EventHandler(this.PosterImageButton_Click);
             // 
             // OpenImageDialog
             // 
             this.OpenImageDialog.FileName = "OpenImage";
             this.OpenImageDialog.Filter = "Bmp files(*.bmp)|*.bmp|All files(*.*)|*.*";
             // 
+            // button1
+            // 
+            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.button1.Location = new System.Drawing.Point(713, 463);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 74);
+            this.button1.TabIndex = 7;
+            this.button1.Text = "REFRESH";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 549);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.PosterImageButton);
             this.Controls.Add(this.button5);
             this.Controls.Add(this.SepiaButton);
@@ -149,6 +166,7 @@
         private System.Windows.Forms.Button button5;
         private System.Windows.Forms.Button PosterImageButton;
         private System.Windows.Forms.OpenFileDialog OpenImageDialog;
+        private System.Windows.Forms.Button button1;
     }
 }
 
