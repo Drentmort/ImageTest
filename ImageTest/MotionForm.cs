@@ -24,20 +24,6 @@ namespace ImageTest
             this.source = source;
         }
 
-        private void checkBox1_CheckedChanged(object sender, EventArgs e)
-        {
-            horizontal = checkBox1.Checked;
-            source.MotionImage(vertical, horizontal, horSpeed, verSpeed);
-            source.Invalidate();
-        }
-
-        private void checkBox2_CheckedChanged(object sender, EventArgs e)
-        {
-            vertical = checkBox2.Checked;
-            source.MotionImage(vertical, horizontal, horSpeed, verSpeed);
-            source.Invalidate();
-        }
-
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
             try
@@ -57,6 +43,18 @@ namespace ImageTest
             }
             catch (Exception) { }
             source.MotionImage(vertical, horizontal, horSpeed, verSpeed);
+            source.Invalidate();
+        }
+
+        private void Horizontal_Click(object sender, EventArgs e)
+        {
+            source.MotionImage(false, true, horSpeed, verSpeed);
+            source.Invalidate();
+        }
+
+        private void Vertical_Click(object sender, EventArgs e)
+        {
+            source.MotionImage(true, false, horSpeed, verSpeed);
             source.Invalidate();
         }
 

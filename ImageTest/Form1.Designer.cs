@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.OutputImage = new System.Windows.Forms.PictureBox();
             this.OpenImageButton = new System.Windows.Forms.Button();
             this.MotionBlurButton = new System.Windows.Forms.Button();
             this.GaussBlurButton = new System.Windows.Forms.Button();
@@ -37,21 +37,21 @@
             this.PosterImageButton = new System.Windows.Forms.Button();
             this.OpenImageDialog = new System.Windows.Forms.OpenFileDialog();
             this.button1 = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.OutputImage)).BeginInit();
             this.SuspendLayout();
             // 
-            // pictureBox1
+            // OutputImage
             // 
-            this.pictureBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.OutputImage.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.pictureBox1.Location = new System.Drawing.Point(25, 24);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(748, 432);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox1.TabIndex = 0;
-            this.pictureBox1.TabStop = false;
-            this.pictureBox1.Paint += new System.Windows.Forms.PaintEventHandler(this.pictureBox1_Paint);
+            this.OutputImage.Location = new System.Drawing.Point(25, 24);
+            this.OutputImage.Name = "OutputImage";
+            this.OutputImage.Size = new System.Drawing.Size(748, 432);
+            this.OutputImage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.OutputImage.TabIndex = 0;
+            this.OutputImage.TabStop = false;
+            this.OutputImage.Paint += new System.Windows.Forms.PaintEventHandler(this.OutputImage_Paint);
             // 
             // OpenImageButton
             // 
@@ -106,7 +106,7 @@
             this.button5.TabIndex = 5;
             this.button5.Text = "Black &   \r\nWhite";
             this.button5.UseVisualStyleBackColor = true;
-            this.button5.Click += new System.EventHandler(this.button5_Click);
+            this.button5.Click += new System.EventHandler(this.GrayScale_Click);
             // 
             // PosterImageButton
             // 
@@ -133,7 +133,7 @@
             this.button1.TabIndex = 7;
             this.button1.Text = "REFRESH";
             this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.button1.Click += new System.EventHandler(this.Refresh_Click);
             // 
             // MainForm
             // 
@@ -147,18 +147,18 @@
             this.Controls.Add(this.GaussBlurButton);
             this.Controls.Add(this.MotionBlurButton);
             this.Controls.Add(this.OpenImageButton);
-            this.Controls.Add(this.pictureBox1);
+            this.Controls.Add(this.OutputImage);
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "MainForm";
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.OutputImage)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.PictureBox OutputImage;
         private System.Windows.Forms.Button OpenImageButton;
         private System.Windows.Forms.Button MotionBlurButton;
         private System.Windows.Forms.Button GaussBlurButton;

@@ -7,9 +7,9 @@ namespace ImageTest
 {
     public partial class MainForm : Form
     {
-        private static Image origin;
-        public static Bitmap changedImage;
-        private static MotionForm motionModalWin;
+        private Image origin;
+        private Bitmap changedImage;
+        private MotionForm motionModalWin;
 
         public MainForm()
         {
@@ -18,29 +18,35 @@ namespace ImageTest
 
         public void MotionImage(bool isVer, bool isHor, int horSpeed, int vertSpeed)
         {
+            
             if (changedImage == null)
                 return;
-
             double[,] core;
             if (isHor)
             {
+                ImageEffects effects = new ImageEffects(changedImage);
                 core = new double[horSpeed, 1];
                 for (int i = 0; i < horSpeed; i++)
                     core[i, 0] = 1;
-                ImageEffects.Convolution(changedImage, core);
+
+                effects.Convolution(core);
+                changedImage = effects.RefreshSource();
             }
 
             if (isVer)
             {
+                ImageEffects effects = new ImageEffects(changedImage);
                 core = new double[1,vertSpeed];
                 for (int j = 0; j < vertSpeed; j++)
                     core[0,j] = 1;
-                ImageEffects.Convolution(changedImage, core);
+                effects.Convolution(core);
+                changedImage = effects.RefreshSource();
             }
 
 
-            pictureBox1.Invalidate();
+            OutputImage.Invalidate();
         }
+
         private void OpenImageButton_Click(object sender, EventArgs e)
         {
             if (OpenImageDialog.ShowDialog() == DialogResult.Cancel)
@@ -50,22 +56,22 @@ namespace ImageTest
 
             origin = new Bitmap(filename);
             changedImage = (Bitmap)origin.Clone();
-            pictureBox1.Invalidate();
+            OutputImage.Invalidate();
 
         }
 
-        private void pictureBox1_Paint(object sender, PaintEventArgs e)
+        private void OutputImage_Paint(object sender, PaintEventArgs e)
         {
             if (origin == null) return;
 
-            Bitmap temp = new Bitmap(pictureBox1.Width, pictureBox1.Height);
+            Bitmap temp = new Bitmap(OutputImage.Width, OutputImage.Height);
             using(Graphics g = Graphics.FromImage(temp))
             {
                 g.InterpolationMode = InterpolationMode.HighQualityBicubic;
-                g.DrawImage(changedImage, 0, 0, pictureBox1.Width, pictureBox1.Height);
+                g.DrawImage(changedImage, 0, 0, OutputImage.Width, OutputImage.Height);
             }
 
-            e.Graphics.DrawImage(temp, pictureBox1.Location);
+            e.Graphics.DrawImage(temp, OutputImage.Location);
         }
 
         private void MotionBlurButton_Click(object sender, EventArgs e)
@@ -79,18 +85,22 @@ namespace ImageTest
         {
             if (changedImage != null)
             {
-                ImageEffects.Sepia(changedImage);
-                pictureBox1.Invalidate();
+                ImageEffects effects = new ImageEffects(changedImage);
+                effects.Sepia();
+                effects.RefreshSource();
+                OutputImage.Invalidate();
             }
 
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void Refresh_Click(object sender, EventArgs e)
         {
+            if (!motionModalWin.IsDisposed && motionModalWin != null)
+                motionModalWin.Dispose();
             if (changedImage != null)
             {
                 changedImage = (Bitmap)origin.Clone();
-                pictureBox1.Invalidate();
+                OutputImage.Invalidate();
             }
         }
 
@@ -98,17 +108,21 @@ namespace ImageTest
         {
             if (changedImage != null)
             {
-                ImageEffects.Poster(changedImage,3);
-                pictureBox1.Invalidate();
+                ImageEffects effects = new ImageEffects(changedImage);
+                effects.Poster(3);
+                effects.RefreshSource();
+                OutputImage.Invalidate();
             }
         }
 
-        private void button5_Click(object sender, EventArgs e)
+        private void GrayScale_Click(object sender, EventArgs e)
         {
             if (changedImage != null)
             {
-                ImageEffects.GrayScale(changedImage);
-                pictureBox1.Invalidate();
+                ImageEffects effects = new ImageEffects(changedImage);
+                effects.GrayScale();
+                effects.RefreshSource();
+                OutputImage.Invalidate();
             }
         }
 
@@ -116,9 +130,15 @@ namespace ImageTest
         {
             if (changedImage != null)
             {
-                double[,] core = { { -1, -1, -1 }, { -1, 9, -1 }, { -1, -1, -1 } };
-                ImageEffects.Convolution(changedImage, core);
-                pictureBox1.Invalidate();
+                double[,] core = { { 0.000789, 0.006581, 0.013347, 0.000789, 0.006581 }, 
+                    { 0.006581, 0.54901, 0.111345, 0.006581, 0.54901 }, 
+                    { 0.013347,0.111345,0.225821, 0.013347, 0.11134 }, 
+                    { 0.006581, 0.54901, 0.111345, 0.006581, 0.54901 }, 
+                    { 0.000789, 0.006581, 0.013347, 0.000789, 0.006581 } };
+                ImageEffects effects = new ImageEffects(changedImage);
+                effects.Convolution(core);
+                changedImage = effects.RefreshSource();
+                OutputImage.Invalidate();
             }
         }
     }
